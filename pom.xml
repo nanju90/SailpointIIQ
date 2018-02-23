@@ -1,0 +1,86 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.speco.myaccess</groupId>
+  <artifactId>identityiq</artifactId>
+  <packaging>war</packaging>
+  <version>1.0</version>
+  <name>identityiq Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+     
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+
+
+    <dependency>
+    	<groupId>Sailpoint</groupId>
+    	<artifactId>identityiq</artifactId>
+    	<version>1.0</version>
+    	<type>war</type>
+    </dependency>
+  </dependencies>
+  <build>
+  <plugins>
+      <!-- Enabling and configuring regular resources filtering.
+           See also section "resources" below -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <!-- specify UTF-8, ISO-8859-1 or any other file encoding -->
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+	  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-war-plugin</artifactId>
+    <version>2.1.1</version>
+    <configuration>
+        <overlays>
+            <overlay>
+                <groupId>Sailpoint</groupId>
+                 <artifactId>identityiq</artifactId>
+            </overlay>
+        </overlays>
+    </configuration>
+</plugin>
+	  </plugins>
+	   <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <finalName>identityiq</finalName>
+  </build>
+  <profiles>
+    <!-- Development environment @ my laptop -->
+    <profile>
+      <id>dev</id>
+      <properties>
+        <db.username>devuser</db.username>
+        <db.password>devpassword</db.password>
+		<db.hostname>localhost</db.hostname>
+		<db.port>3306</db.port>
+        </properties>
+    </profile>
+    <!-- Production environment @ production server -->
+    <profile>
+      <id>prod</id>
+      <properties>
+        <db.username>produser</db.username>
+        <db.password>prodpassword</db.password>
+		<db.hostname>localhost</db.hostname>
+		<db.port>3306</db.port>
+      </properties>
+    </profile>
+  </profiles>
+
+  
+</project>
