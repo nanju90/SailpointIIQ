@@ -16,14 +16,17 @@
       <scope>test</scope>
     </dependency>
 
-
     <dependency>
-    	<groupId>Sailpoint</groupId>
+		<!--<groupId>Sailpoint</groupId> -->
+    	<groupId>sailpoint.identityiq</groupId>
     	<artifactId>identityiq</artifactId>
-    	<version>1.0</version>
+		<version>1.0.0</version>
+    	<!--<version>1.0</version>-->
     	<type>war</type>
     </dependency>
   </dependencies>
+  
+  
   <build>
   <plugins>
       <!-- Enabling and configuring regular resources filtering.
@@ -43,10 +46,17 @@
     <version>2.1.1</version>
     <configuration>
         <overlays>
+		<!--
             <overlay>
                 <groupId>Sailpoint</groupId>
                  <artifactId>identityiq</artifactId>
             </overlay>
+		-->
+			<overlay>
+				 <excludes>
+			     <excludes>WEB-INF/web.xml</excludes>
+			  </excludes>
+			 </overlay>
         </overlays>
     </configuration>
 </plugin>
